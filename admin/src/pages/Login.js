@@ -50,6 +50,12 @@ export default function Login() {
           </div>
           <div>
             <button className="border w-full py-2">Login</button>
+            <button
+              onClick={() => navigate("/register")}
+              className="border w-full py-2"
+            >
+              Register
+            </button>
           </div>
         </form>
       </div>
