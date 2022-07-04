@@ -28,8 +28,15 @@ export default function Home() {
     getArticles();
   }, []);
   return (
-    <div className="flex justify-center flex-col">
-      <button onClick={() => navigate("/add")}>Add New Article</button>
+    <div className="flex justify-center flex-col py-10">
+      <div className="flex justify-center">
+        <button
+          onClick={() => navigate("/add")}
+          className="border px-4 py-2 rounded-md"
+        >
+          Add New Article
+        </button>
+      </div>
       <div>
         {articles.map((el, i) => {
           return <ArticleCard key={i} article={el} onDelete={handleDelete} />;

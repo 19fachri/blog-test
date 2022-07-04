@@ -35,7 +35,7 @@ export default function Login() {
               name="email"
               onChange={handleChange}
               value={input.email}
-              className="px-4 py-2"
+              className="px-4 py-2 border rounded-md"
             />
           </div>
           <div className="flex flex-col gap-2 mb-4 capitalize">
@@ -45,7 +45,7 @@ export default function Login() {
               name="password"
               onChange={handleChange}
               value={input.password}
-              className="px-4 py-2"
+              className="px-4 py-2 border rounded-md"
             />
           </div>
           <div>
