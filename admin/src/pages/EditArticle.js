@@ -1,21 +1,33 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function CreateArticle() {
+export default function EditArticle() {
   const navigate = useNavigate();
+  const { articleId } = useParams();
   const [input, setInput] = useState({
     title: "",
     body: "",
     imgUrl: "",
   });
+  const getArticle = () => {
+    axios
+      .get("/" + articleId)
+      .then(({ data }) => {
+        setInput(data.article);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getArticle();
+  }, []);
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/admin/article/create", input, {
+      .put("/admin/article/edit/" + articleId, input, {
         headers: { access_token: localStorage.getItem("access_token") },
       })
       .then(({ data }) => {
@@ -56,7 +68,7 @@ export default function CreateArticle() {
             />
           </div>
           <div>
-            <button>Save</button>
+            <button>Update</button>
           </div>
         </form>
       </div>

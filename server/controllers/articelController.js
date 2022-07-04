@@ -12,8 +12,8 @@ class ArticelController {
   }
 
   static async create(req, res, next) {
-    let newData = filterRequest(req.body);
-    newData.AuthorId = req.user.id;
+    const { title, body, imgUrl } = req.body;
+    let newData = { title, body, imgUrl, AuthorId: req.user.id };
 
     try {
       const article = await Article.create(newData);
@@ -33,7 +33,8 @@ class ArticelController {
 
   static async update(req, res, next) {
     try {
-      let newData = filterRequest(req.body);
+      const { title, body, imgUrl } = req.body;
+      let newData = { title, body, imgUrl, AuthorId: req.user.id };
       let option = {
         where: { id: +req.params.articleId },
         returning: true,
@@ -48,7 +49,7 @@ class ArticelController {
 
   static async destroy(req, res, next) {
     try {
-      await Article.destroy(req.params.articleId);
+      await Article.destroy({ where: { id: req.params.articleId } });
       res.status(200).json({ message: "Article deleted successfully" });
     } catch (error) {
       next(error);

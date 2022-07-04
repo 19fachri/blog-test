@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import IsLogin from "./guards/isLogin";
 import CreateArticle from "./pages/CreateArticle";
+import EditArticle from "./pages/EditArticle";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       >
         <Route index element={<Home />} />
         <Route path="/add" element={<CreateArticle />} />
+        <Route path="/edit/:articleId" element={<EditArticle />} />
       </Route>
     </Routes>
   );

@@ -11,13 +11,13 @@ routes.get("/", ArticelController.findAll);
 routes.post("/admin/article/create", isAuthenticate, ArticelController.create);
 routes.get("/:articleId", isArticleEksist, ArticelController.show);
 routes.put(
-  "admin/article/edit/:articleId",
+  "/admin/article/edit/:articleId",
   isAuthenticate,
   isArticleEksist,
   ArticelController.update
 );
 routes.delete(
-  "admin/article/delete/:articleId",
+  "/admin/article/delete/:articleId",
   isAuthenticate,
   isArticleEksist,
   ArticelController.destroy
